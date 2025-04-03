@@ -1,6 +1,7 @@
 "use client"
 
 import React, {useState} from 'react'
+import { registerAction } from '../serverActions/registerAction'
 
 const RegisterForm = () => {
     const [username, setUserName] =useState('')
@@ -10,8 +11,16 @@ const RegisterForm = () => {
     const registerHandler= async(e)=>{
         e.preventDefault()
 
-        const userRegisterDetails=[username,email,password]
+        const userRegisterDetails={username,email,password}
         console.log(userRegisterDetails)
+
+        try{
+          await registerAction(userRegisterDetails)
+          console.log("Registration successful")
+        }
+        catch(error){
+            console.log("Error in registration: ",error)
+        }
 
     }
   return (
