@@ -105,7 +105,7 @@ const RegisterForm = () => {
 
                 <h3>Email</h3>
                 <input 
-                    type="email" 
+                    type="text" 
                     name="email" 
                     value={email} 
                     onChange={(e) => setEmail(e.target.value)} 
@@ -113,7 +113,7 @@ const RegisterForm = () => {
 
                 <h3>Password</h3>
                 <input 
-                    type="password" 
+                    type="text" 
                     name="password" 
                     value={password} 
                     onChange={(e) => setPassword(e.target.value)} 
