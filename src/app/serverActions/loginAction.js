@@ -3,12 +3,12 @@
 "use server"
 
 import DBconnection from "../utilis/config/db"
-import { signIn } from "../auth";
+import { signIn } from "../auth"
 export async function loginAction(loginDetails) {
     await DBconnection();
 
     try {
-        const response = await signIn("Credentials", {
+        const response = await signIn("credentials", {
             email: loginDetails.email,
             password: loginDetails.password,
             redirect: false,
@@ -23,10 +23,10 @@ export async function loginAction(loginDetails) {
             };
         }
         
-        if (!response?.ok) {
+        if (response?.ok) {
             return {
-                success: false,
-                message: "Invalid login credentials",
+                success: true,
+                message: "Login successful",
             };
         }
         

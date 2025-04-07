@@ -59,6 +59,7 @@ import React, { useState } from 'react'
 import { registerAction } from '../serverActions/registerAction'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Link from 'next/link'
 
 const RegisterForm = () => {
     const [username, setUserName] = useState('')
@@ -121,6 +122,7 @@ const RegisterForm = () => {
 
                 <button type="submit">Register</button>
             </form>
+            <Link href="/login" >Already have an account? Login</Link>
         </div>
     )
 }

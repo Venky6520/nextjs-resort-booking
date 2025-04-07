@@ -3,7 +3,11 @@
 import React, { useState } from 'react'
 import { loginAction } from '../serverActions/loginAction'
 import { useRouter } from 'next/navigation'
-import { auth } from '../auth'
+import { ToastContainer } from 'react-toastify'
+
+import 'react-toastify/dist/ReactToastify.css'
+
+import Link from 'next/link'
 
 const UserLogin = () => {
      const [email, setEmail] = useState('')
@@ -15,7 +19,6 @@ const router = useRouter()
             e.preventDefault()
             const loginDetails = { email, password }
             console.log(loginDetails)
-            console.log("User from DB:", user);
             
 
             try {
@@ -23,9 +26,13 @@ const router = useRouter()
             
                 if (response.success) {
                     router.push('/');
-                    alert("Login successful");
+                    // alert("Login successful");
+            toast.success("Registration successful!", { position: "top-right" })
+                   
                 } else {
                     setError(response.message || "Login failed");
+                               toast.error("Error in registration. Please try again.", { position: "top-right" })
+                   
                 }
             } catch (error) {
                 setError("Something went wrong. Please try again.");
@@ -37,6 +44,7 @@ const router = useRouter()
     <div className='formContainer'>
             <form onSubmit={loginHandler} className='formSection'>
                 {error && <p style={{color:"red"}}>{error}</p>}
+                <ToastContainer/>
 
                 <h3>Email</h3>
                 <input 
@@ -56,6 +64,7 @@ const router = useRouter()
 
                 <button type="submit">Login</button>
             </form>
+            <Link href="/register" >If not register? Register</Link>
         </div>
   )
 }
