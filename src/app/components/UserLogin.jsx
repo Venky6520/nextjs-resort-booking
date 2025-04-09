@@ -3,9 +3,9 @@
 import React, { useState } from 'react'
 import { loginAction } from '../serverActions/loginAction'
 import { useRouter } from 'next/navigation'
-import { ToastContainer } from 'react-toastify'
+// import { ToastContainer } from 'react-toastify'
 
-import 'react-toastify/dist/ReactToastify.css'
+// import 'react-toastify/dist/ReactToastify.css'
 
 import Link from 'next/link'
 
@@ -26,12 +26,12 @@ const router = useRouter()
             
                 if (response.success) {
                     router.push('/');
-                    // alert("Login successful");
-            toast.success("Registration successful!", { position: "top-right" })
+                    alert("Login successful");
+            // toast.success("Registration successful!", { position: "top-right" })
                    
                 } else {
                     setError(response.message || "Login failed");
-                               toast.error("Error in registration. Please try again.", { position: "top-right" })
+                            //    toast.error("Error in registration. Please try again.", { position: "top-right" })
                    
                 }
             } catch (error) {
@@ -44,7 +44,7 @@ const router = useRouter()
     <div className='formContainer'>
             <form onSubmit={loginHandler} className='formSection'>
                 {error && <p style={{color:"red"}}>{error}</p>}
-                <ToastContainer/>
+                {/* <ToastContainer/> */}
 
                 <h3>Email</h3>
                 <input 

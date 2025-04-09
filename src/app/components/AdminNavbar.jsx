@@ -1,9 +1,7 @@
-
-
-import Link from 'next/link'
 import React from 'react'
+import Link from 'next/link'
 
-const UserNavigation =({userName}) => {
+const AdminNavbar = () => {
   return (
     <div className='navSection'>
     <div className="title">
@@ -12,17 +10,10 @@ const UserNavigation =({userName}) => {
       </Link>
     </div>
    
-    <div className="contact">
-        Call now : 123 456 789
-    </div>
-    <Link href="/invoice" className='link'>
-    <div className="bookings">
-      Bookings: 
-    </div>
-    </Link>
-    <p>Welcome: 
+ 
+   
+    <p>Welcome: Admin
       <span style={{color:'yellow', marginLeft:'5px', fontSize:'1.2rem', border:'none'}}>
-      {userName}
       </span>
        </p>
     <Link href="/api/auth/signout" className='link'>
@@ -34,4 +25,4 @@ const UserNavigation =({userName}) => {
   )
 }
 
-export default UserNavigation
+export default AdminNavbar
