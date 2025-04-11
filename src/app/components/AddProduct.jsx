@@ -17,14 +17,30 @@ const AddProduct = () => {
         e.preventDefault()
         const recordDetails = { title, price, offer, amen, desc, image }
         console.log(recordDetails)
-
-        try{
-            await productAction(recordDetails)
-            console.log("Record added successfully")
-        }
-        catch(error){
-            console.error("Error in adding record:", error)
-        }
+        const data = new FormData()
+        data.append("title", title)
+        data.append("price", price)
+        data.append("offer", offer)
+        data.append("ammen", amen)
+        data.append("desc", desc)
+        data.append("image", image)
+        console.log('product data',data)
+       try{
+const res = await fetch('http://localhost:3000/api/admin/add-product', {
+    method: 'POST',
+    body: data,
+       })
+       const result = await res.json()
+       console.log(result)
+       if(result.success){
+        alert("Product added successfully")
+       }
+      
+      }
+       catch(error){
+console.log(error)
+alert("Product not added")
+       }
     }
   return (
     <div className={admin.container}>
