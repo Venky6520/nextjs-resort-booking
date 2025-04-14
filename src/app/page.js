@@ -4,6 +4,7 @@ import { auth } from './auth'
 import { redirect } from 'next/navigation'
 import UserNavigation from './components/UserNavigation'
 import AdminPage from './admin/page'
+import ProductCollection from './components/ProductCollection'
 const HomePage = async() => {
   const session= await auth()
   await DBconnection()
@@ -19,6 +20,8 @@ const HomePage = async() => {
      <>
       <UserNavigation userName={userName}/>
       <h1>Welcome to nextjs</h1>
+      <ProductCollection/>
+
       </>}
       {session.role === "admin"&&
       <AdminPage/>}

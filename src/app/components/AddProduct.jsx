@@ -21,7 +21,7 @@ const AddProduct = () => {
         data.append("title", title)
         data.append("price", price)
         data.append("offer", offer)
-        data.append("ammen", amen)
+        data.append("amen", amen)
         data.append("desc", desc)
         data.append("image", image)
         console.log('product data',data)
@@ -34,6 +34,12 @@ const res = await fetch('http://localhost:3000/api/admin/add-product', {
        console.log(result)
        if(result.success){
         alert("Product added successfully")
+        setTitle("")
+                setPrice("")
+                setOffer("")
+                setDesc("")
+                setAmen("")
+                setImage("")
        }
       
       }

@@ -23,7 +23,7 @@ export async function POST(req){
     const title = data.get("title");
     const price = data.get("price");
     const offer = data.get("offer");
-    const ammen = data.get("ammen");
+    const amen = data.get("amen");
     const desc = data.get("desc");
     const image = data.get("image");
 
@@ -37,9 +37,9 @@ export async function POST(req){
             title:title,
             price:price,
             offer:offer,
-            ammen:ammen,
+            amen:amen,
             desc:desc,
-            image:`/uploads/${image.name}`
+            image:`/images/${image.name}`
         })
         await newProduct.save()
         return NextResponse.json({response:"Product added successfully", success:true},
