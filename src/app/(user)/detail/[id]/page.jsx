@@ -3,6 +3,9 @@
 import React from 'react'
 import { useParams } from 'next/navigation'
 import { useEffect,useState } from 'react'
+import Link from 'next/link'
+import UserNavigation from "../../../components/UserNavigation"
+import CalenderComponent from "../../../components/CalenderComponent"
 
 const DynamicProduct = () => {
     const [record, setRecord] = useState("")
@@ -27,33 +30,56 @@ useEffect(() => {
 , [])
   return (
     <div>
-      <h1>Dynamic Product</h1>
-        <h2>Product ID: {id}</h2>
-        <div>
-       Title:     {record.title}
-        </div>
-        <div>
-         Price: {record.price}
+        <UserNavigation/>
+        <CalenderComponent />
+        <Link href="/">
+        <p align="center">Go Back</p>
+        </Link>
+      {record? 
+         (<div className="">
+            <div className="singleSection">
+            <div className="singleLeft">
+              <div className="">
+               <h2>{record.title}</h2>
+              </div>
+              <img src={record.image} alt={record.title} className="singleImage"/>
+              </div>
+              <div className="singleCenter">
+               <div className="singlePrice">Rs.{record.price}</div>
+               <p className="singleDesc">{record.desc}</p>
+               <div className="">
+                   {record.amen.map((item, i)=>{
+                       return(
+                           <div className="singleAmen"  key={i}>
+                              <span>*</span> {item}
+                           </div>
+                       )
+                   })}
+               </div>
+               <div className="offer">
+               <span>*</span>
+                  <button>  Discount {record.offer}</button>
+               </div>
+               <div className="singleBtn">
+                   <button className=""   >Book Now</button>
+               </div>
+              </div>
             </div>
-        <div>
-            Description: {record.desc}
-            </div>
-        <div>
-            Amenities:
-            {record.amen && record.amen.map((item, i) => {
-                return (
-                    <div key={i}>
-                        {item}
-                    </div>
-                )
-            })}
-            </div>
-        <div>
-            Offer: {record.offer}
-            </div>
-        <div>
-<img src={record.image} alt="" />            </div>
-    </div>
+
+           </div>)
+        :<h1 style={{position:'absolute', top:'50%', left:'50%'}}>  
+        Loading
+          {/* <Circles
+        height="80"
+        width="80"
+        color="#4fa94d"
+        ariaLabel="circles-loading"
+        wrapperStyle={{}}
+        wrapperClass=""
+        visible={true}
+        /> */}
+        </h1>}
+</div>
   )
 }
 
