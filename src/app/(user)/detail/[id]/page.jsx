@@ -6,6 +6,7 @@ import { useEffect,useState } from 'react'
 import Link from 'next/link'
 import UserNavigation from "../../../components/UserNavigation"
 import CalenderComponent from "../../../components/CalenderComponent"
+import { bookingAction } from "../../../serverActions/bookingAction"
 
 const DynamicProduct = () => {
     const [record, setRecord] = useState("")
@@ -28,6 +29,16 @@ useEffect(() => {
     dynamicHandler()
 }
 , [])
+
+
+const bookingHandler = async () => {
+  console.log("Booking Handler", record)
+  try{
+    await bookingAction(record)
+    console.log("Booking action called")
+  }
+  catch(error){}
+}
   return (
     <div>
         <UserNavigation/>
@@ -61,7 +72,7 @@ useEffect(() => {
                   <button>  Discount {record.offer}</button>
                </div>
                <div className="singleBtn">
-                   <button className=""   >Book Now</button>
+                   <button className=""  onClick={bookingHandler} >Book Now</button>
                </div>
               </div>
             </div>

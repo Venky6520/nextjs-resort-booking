@@ -50,10 +50,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: 'user',
   },
-  bookings: {
+  bookings: [{
     type: mongoose.Types.ObjectId,
     ref: 'bookings',
-  },
+  }],
 });
 
 const UserModel = mongoose.models.User || mongoose.model('User', UserSchema);
