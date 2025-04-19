@@ -13,7 +13,7 @@ export async function GET(request, { params }) {
         if(!id) {
             return NextResponse.json({success:false, message: "no user found"}, {status: 404})
         }
-        const user= await UserModel.findById(id)
+        const user= await UserModel.findById(id).populate("bookings")
 
         return NextResponse.json({success:true, user}, {status: 200})
     }

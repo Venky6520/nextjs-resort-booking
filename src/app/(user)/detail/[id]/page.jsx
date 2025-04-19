@@ -13,6 +13,8 @@ const DynamicProduct = () => {
     const params = useParams()
     const { id } = params
 
+    const [selectedDates, setSelectedDates] = useState(null)
+
 
 
     console.log("Dynamic client ID", id)
@@ -32,17 +34,31 @@ useEffect(() => {
 
 
 const bookingHandler = async () => {
+
+  if(!selectedDates){
+    alert("Please select dates first")
+    return
+  }
   console.log("Booking Handler", record)
+  const bookingDetails = {record, selectedDates}
+
   try{
-    await bookingAction(record)
+    await bookingAction(bookingDetails)
     console.log("Booking action called")
   }
   catch(error){}
 }
+
+const handleDateSelect = (dates) => {
+  setSelectedDates(dates)
+
+  console.log(" Dates coming from calendar", dates)
+
+}
   return (
     <div>
         <UserNavigation/>
-        <CalenderComponent />
+        <CalenderComponent onDatesSelect={handleDateSelect}/>
         <Link href="/">
         <p align="center">Go Back</p>
         </Link>

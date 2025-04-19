@@ -60,11 +60,13 @@ import { registerAction } from '../serverActions/registerAction'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Link from 'next/link'
-
+import { useRouter } from 'next/navigation'
 const RegisterForm = () => {
     const [username, setUserName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const router = useRouter()
 
     const registerHandler = async (e) => {
         e.preventDefault()
@@ -86,6 +88,7 @@ const RegisterForm = () => {
             setUserName('')
             setEmail('')
             setPassword('')
+            router.push('/login') // Redirect to login page after successful registration
         } catch (error) {
             toast.error("Error in registration. Please try again.", { position: "top-right" })
             console.log("Error in registration: ", error)
